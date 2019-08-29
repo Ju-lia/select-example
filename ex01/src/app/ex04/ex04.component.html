@@ -1,0 +1,20 @@
+<form>
+	<div *ngFor="let item of data; index as ndx">
+		<select value="{{item.Num}}" name="Num{{ndx}}" (change)="updateNum(ndx, $event)">
+	  		<option selected value="0">-Please select option-</option>
+	  		<option value="1">one</option>
+	  		<option value="2">two</option>
+	  		<option value="3">abc</option>
+	  		<option value="4">def</option>
+		</select>
+  		<input type="text" value="{{item.Nam}}" name="Nam{{ndx}}" (change)="updateNam(ndx, $event)">
+		<input type="text" value="{{item.Val}}" name="Val{{ndx}}" (change)="updateVal(ndx, $event)">
+		<button (click)="delRow(ndx)">X</button>
+		[{{item.Num}}.'{{item.Nam}}'.'{{item.Val}}']
+		<br>
+	</div>
+	<button (click)="addNew()">A</button>
+</form>
+
+<hr>
+{{dump}}
