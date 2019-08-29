@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { Ex00Model } from '../model/ex00.model';
 
 @Component({
@@ -7,7 +8,6 @@ import { Ex00Model } from '../model/ex00.model';
   styleUrls: ['./ex01.component.css']
 })
 export class Ex01Component implements OnInit, OnDestroy {
-
   data: Array<Ex00Model>;
   dump: string;
 
@@ -17,7 +17,9 @@ export class Ex01Component implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dump = localStorage.getItem('dump');
-    if (this.dump && (this.dump.length > 0)) { this.data = JSON.parse(this.dump) } 
+    if (this.dump && this.dump.length > 0) {
+      this.data = JSON.parse(this.dump);
+    }
   }
 
   ngOnDestroy() {
@@ -30,14 +32,16 @@ export class Ex01Component implements OnInit, OnDestroy {
   }
 
   addNew() {
-    this.data.push(
-      {Num: 0, Nam: undefined, Val: undefined} 
-    )
+    this.data.push({ Num: 0, Nam: undefined, Val: undefined });
     this.update();
   }
 
   delRow(index: number) {
     this.data.splice(index, 1);
     this.update();
-  } 
+  }
+
+  trackByFn(index, item) {
+    return index;
+  }
 }

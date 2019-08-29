@@ -1,20 +1,20 @@
 <form>
-	<div *ngFor="let item of data; index as ndx">
-		<select [(ngModel)]="item.Num" name="Num{{ndx}}" (change)="update()">
-	  		<option selected value="0">-Please select option-</option>
-	  		<option value="1">one</option>
-	  		<option value="2">two</option>
-	  		<option value="3">abc</option>
-	  		<option value="4">def</option>
-		</select>
-  		<input type="text" [(ngModel)]="item.Nam" name="Nam{{ndx}}" (change)="update()">
-		<input type="text" [(ngModel)]="item.Val" name="Val{{ndx}}" (change)="update()">
-		<button (click)="delRow(ndx)">X</button>
-		[{{item.Num}}.'{{item.Nam}}'.'{{item.Val}}']
-		<br>
-	</div>
-	<button (click)="addNew()">A</button>
+  <div *ngFor="let item of data; index as i; trackBy: trackByFn">
+    <select [(ngModel)]="item.Num" name="Num{{ i }}" (change)="update()">
+      <option selected value="0">-Please select option-</option>
+      <option value="1">one</option>
+      <option value="2">two</option>
+      <option value="3">abc</option>
+      <option value="4">def</option>
+    </select>
+    <input type="text" [(ngModel)]="item.Nam" name="Nam{{ i }}" (change)="update()" />
+    <input type="text" [(ngModel)]="item.Val" name="Val{{ i }}" (change)="update()" />
+    <button (click)="delRow(i)">X</button>
+    [{{ item.Num }}.'{{ item.Nam }}'.'{{ item.Val }}']
+    <br />
+  </div>
+  <button (click)="addNew()">A</button>
 </form>
 
-<hr>
-{{dump}}
+<hr />
+{{ dump }}
